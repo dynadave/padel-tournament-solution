@@ -1,26 +1,12 @@
-<!DOCTYPE html>
+
 <html>
   <head>
-      <script src="https://cdn.jsdelivr.net/pyodide/v0.19.0/full/pyodide.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/brython@3/brython_stdlib.js"></script>
   </head>
-  <body>
-    Pyodide test page <br>
-    Open your browser console to see Pyodide output
-    <script type="text/javascript">
-      async function main(){
-        let pyodide = await loadPyodide({
-          indexURL : "https://cdn.jsdelivr.net/pyodide/v0.19.0/full/"
-        });
-        pyodide.runPythonAsync(`
-          import micropip
-          await micropip.install('snowballstemmer')
-          import snowballstemmer
-          stemmer = snowballstemmer.stemmer('english')
-          print(stemmer.stemWords('go goes going gone'.split()))
-        `);
-        console.log(pyodide.runPython("print(1 + 2)"));
-      }
-      main();
-    </script>
+  <body onload="brython()">
+    <script type="text/python" src="test.bry"></script>
+    <input id="zone">
+    <button id="echo">click !</button>
   </body>
 </html>
